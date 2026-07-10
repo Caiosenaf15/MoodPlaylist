@@ -1,23 +1,30 @@
-import { getSpotifyToken, SpotifyTokenResponse } from '@/app/api/spotify/token/route';
+import { searchTracks } from '@/app/api/spotify/lib/spotify';
 
-async function search(q: string, type: string[]){
-  try{
-    const token = await getSpotifyToken();
+export async function GET(request: Request) {
+  try {
+    const url = new URL(request.url);
+    const query = url.searchParams.get('q');
 
-    const resp = await fetch(`https://api.spotify.com/v1/search?q=${q}&type=${type}&market=BR`,
-      {
-        headers: {'Authorization': `Bearer ${token.access_token}`}
-      }
-    )
-    if(resp.status === 401){
-
+    if (!query) {
+      return new Response(JSON.stringify({ error: 'parâmetro "q" ausente' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
-    if (!resp.ok) {
-      const errorText = await resp.text();
-      throw new Error(`Failed to get Spotify ${type}: ${resp.status} ${errorText}`);
-    }
-    return resp.json();
-  }catch(error){
-    throw new Error(`Failed to get Spotify ${type}. Error: ${error}`);
+
+    const data = await searchTracks(query);
+
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Erro interno';
+    console.error('Erro na busca do Spotify:', message);
+
+    return new Response(JSON.stringify({ error: message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
