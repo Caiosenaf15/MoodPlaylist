@@ -8,6 +8,7 @@ export interface MoodResult {
   cores: string[];
   texto: string;
   generosMusicais: string[];
+  artistasSugeridos: string[];
 }
 
 export async function moodGemini(query: string): Promise<MoodResult> {
@@ -17,13 +18,15 @@ export async function moodGemini(query: string): Promise<MoodResult> {
 {
   "cores": ["#hexColor1", "#hexColor2", "#hexColor3"],
   "texto": "a short poetic sentence, written in Portuguese (Brazil), describing the mood below",
-  "generosMusicais": ["genre1", "genre2"]
+  "generosMusicais": ["genre1", "genre2"],
+  "artistasSugeridos": ["Artist Name 1", "Artist Name 2", "Artist Name 3"]
 }
 
 Rules:
 - "cores" must be 3 hex color codes that visually match the emotional tone of the mood.
 - "texto" must be written in Brazilian Portuguese, even though these instructions are in English.
-- "generosMusicais" must be 2 music genres or keywords suitable for a Spotify search. Use universal English genre terms (e.g. "lo-fi", "acoustic", "melancholic") by default. However, if the mood strongly suggests Brazilian music, use Brazilian genre terms exactly as they are (e.g. "sertanejo", "mpb", "bossa nova", "forró", "pagode", "funk brasileiro") instead of translating them.
+- "generosMusicais" must be 2 music genres or keywords suitable for a Spotify search. Use universal English genre terms by default (e.g. "lo-fi", "acoustic", "melancholic"), but use Brazilian genre terms exactly as they are (e.g. "sertanejo", "mpb", "bossa nova", "forró", "pagode", "funk brasileiro") if the mood strongly suggests Brazilian music.
+- "artistasSugeridos" must be 3 real, well-known music artists (any nationality/language, whatever best fits) whose music genuinely matches the emotional tone of the mood. Prefer artists with a well-established, easily searchable catalog on Spotify. Do not invent artist names.
 
 User's mood description (may be written in Portuguese): "${query}"`,
     config: {
@@ -47,7 +50,8 @@ User's mood description (may be written in Portuguese): "${query}"`,
   const isValid =
     Array.isArray(parsed.cores) &&
     typeof parsed.texto === 'string' &&
-    Array.isArray(parsed.generosMusicais);
+    Array.isArray(parsed.generosMusicais) &&
+    Array.isArray(parsed.artistasSugeridos);
 
   if (!isValid) {
     throw new Error('A resposta da IA não está no formato esperado.');

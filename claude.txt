@@ -1,3 +1,4 @@
 Adicionar o moodfy no portfolio
-Possibilidade de criar playlist tbm no youtube music
+Possibilidade de criar playlist tbm no youtube music / youtube (talvez ate usar o spotify para buscar as musicas e colocar um player do youtube com a musica)
 Possibilidade de criar as playlists do spotify em uma conta secundaria
+Esta retornando musicas muito diferentes do mood especificado
