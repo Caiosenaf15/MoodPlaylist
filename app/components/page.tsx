@@ -126,7 +126,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-5 sm:gap-6 px-4 py-8 sm:p-6 text-slate-100 relative overflow-x-hidden">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-5 sm:gap-6 px-4 py-8 sm:p-6 text-slate-100 relative overflow-x-hidden bg-slate-950">
       {output && <MoodBackground cores={output.cores} />}
 
       <button
