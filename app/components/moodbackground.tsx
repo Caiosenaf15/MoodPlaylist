@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from 'framer-motion';
-
 interface MoodBackgroundProps {
   cores: string[];
 }
@@ -14,75 +10,79 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
   ];
 
   return (
-    <motion.div
-      className="fixed inset-0 -z-10 overflow-hidden bg-slate-950"
-      animate={{
-        filter: [
-          'hue-rotate(0deg) saturate(1)',
-          'hue-rotate(35deg) saturate(1.3)',
-          'hue-rotate(-30deg) saturate(1.1)',
-          'hue-rotate(20deg) saturate(1.2)',
-          'hue-rotate(0deg) saturate(1)',
-        ],
-      }}
-      transition={{
-        duration: 14,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      }}
-    >
-      <motion.div
-        className="absolute w-[42vw] h-[42vw] rounded-full blur-[110px]"
-        style={{ top: '5%', left: '10%' }}
-        animate={{
-          backgroundColor: [c1, c2, c3, c1],
-          x: [0, 80, -40, 0],
-          y: [0, 60, 100, 0],
-          scale: [1, 1.25, 0.9, 1],
-          opacity: [0.4, 0.55, 0.35, 0.4],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-950">
+      <div
+        className="mood-orb mood-orb-1"
+        style={{ backgroundColor: c1 }}
+      />
+      <div
+        className="mood-orb mood-orb-2"
+        style={{ backgroundColor: c2 }}
+      />
+      <div
+        className="mood-orb mood-orb-3"
+        style={{ backgroundColor: c3 }}
       />
 
-      <motion.div
-        className="absolute w-[36vw] h-[36vw] rounded-full blur-[110px]"
-        style={{ top: '40%', right: '8%' }}
-        animate={{
-          backgroundColor: [c2, c3, c1, c2],
-          x: [0, -70, 30, 0],
-          y: [0, 80, -50, 0],
-          scale: [1, 0.85, 1.3, 1],
-          opacity: [0.35, 0.5, 0.3, 0.35],
-        }}
-        transition={{
-          duration: 21,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      <div className="absolute inset-0 bg-slate-950/30" />
 
-      <motion.div
-        className="absolute w-[34vw] h-[34vw] rounded-full blur-[110px]"
-        style={{ bottom: '5%', left: '30%' }}
-        animate={{
-          backgroundColor: [c3, c1, c2, c3],
-          x: [0, 60, -80, 0],
-          y: [0, -60, 40, 0],
-          scale: [1, 1.2, 0.9, 1],
-          opacity: [0.3, 0.45, 0.28, 0.3],
-        }}
-        transition={{
-          duration: 24,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      <style jsx>{`
+        .mood-orb {
+          position: absolute;
+          width: 62vw;
+          height: 62vw;
+          max-width: 780px;
+          max-height: 780px;
+          border-radius: 9999px;
+          filter: blur(100px);
+          opacity: 0.4;
+          will-change: transform;
+        }
 
-      <div className="absolute inset-0 bg-slate-950/10" />
-    </motion.div>
+        .mood-orb-1 {
+          top: -10%;
+          left: -5%;
+          animation: drift1 28s ease-in-out infinite;
+        }
+
+        .mood-orb-2 {
+          top: 25%;
+          right: -10%;
+          animation: drift2 34s ease-in-out infinite;
+        }
+
+        .mood-orb-3 {
+          bottom: -15%;
+          left: 15%;
+          animation: drift3 40s ease-in-out infinite;
+        }
+
+        @keyframes drift1 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(6vw, 4vw) scale(1.1); }
+          66% { transform: translate(-4vw, 6vw) scale(0.95); }
+        }
+
+        @keyframes drift2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(-5vw, 5vw) scale(0.92); }
+          66% { transform: translate(3vw, -4vw) scale(1.12); }
+        }
+
+        @keyframes drift3 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(4vw, -5vw) scale(1.08); }
+          66% { transform: translate(-6vw, -2vw) scale(0.94); }
+        }
+
+        @media (max-width: 640px) {
+          .mood-orb {
+            width: 95vw;
+            height: 95vw;
+            filter: blur(70px);
+          }
+        }
+      `}</style>
+    </div>
   );
 }
