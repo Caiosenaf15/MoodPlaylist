@@ -1,9 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  /* Substitua o mapeamento antigo por este */
-  --background: #ffffff;
-  --text-color: #171717; /* Um cinza bem escuro, quase preto */
+  --background: #0a0a0a;
+  --text-color: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,12 +13,10 @@
 }
 
 @theme {
-  /* Força o Tailwind a usar suas variáveis para o fundo e textos padrões */
   --color-background: var(--background);
   --color-foreground: var(--text-color);
 }
 
-/* Força a aplicação global caso tenha componentes que limpem o estilo */
 body {
   background-color: var(--background) !important;
   color: var(--text-color) !important;

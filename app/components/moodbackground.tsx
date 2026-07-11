@@ -82,7 +82,7 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
         }}
       />
 
-      <div className="absolute inset-0 bg-slate-950/35" />
+      <div className="absolute inset-0 bg-slate-950/10" />
     </motion.div>
   );
 }
