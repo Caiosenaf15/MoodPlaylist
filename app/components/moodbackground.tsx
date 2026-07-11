@@ -13,18 +13,22 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
     <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-950">
       <div
         className="mood-orb mood-orb-1"
-        style={{ backgroundColor: c1 }}
+        style={{
+          background: `radial-gradient(circle, ${c1} 0%, ${c1}00 70%)`,
+        }}
       />
       <div
         className="mood-orb mood-orb-2"
-        style={{ backgroundColor: c2 }}
+        style={{
+          background: `radial-gradient(circle, ${c2} 0%, ${c2}00 70%)`,
+        }}
       />
       <div
         className="mood-orb mood-orb-3"
-        style={{ backgroundColor: c3 }}
+        style={{
+          background: `radial-gradient(circle, ${c3} 0%, ${c3}00 70%)`,
+        }}
       />
-
-      <div className="absolute inset-0 bg-slate-950/30" />
 
       <style jsx>{`
         .mood-orb {
@@ -34,8 +38,7 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
           max-width: 780px;
           max-height: 780px;
           border-radius: 9999px;
-          filter: blur(100px);
-          opacity: 0.4;
+          opacity: 0.55;
           will-change: transform;
         }
 
@@ -77,9 +80,8 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
 
         @media (max-width: 640px) {
           .mood-orb {
-            width: 95vw;
-            height: 95vw;
-            filter: blur(70px);
+            width: 90vw;
+            height: 90vw;
           }
         }
       `}</style>
