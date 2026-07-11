@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 :root {
+  /* Substitua o mapeamento antigo por este */
   --background: #ffffff;
-  --foreground: #171717;
+  --text-color: #171717; /* Um cinza bem escuro, quase preto */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Garanta que o celular em modo escuro mude as variáveis base */
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --text-color: #ededed;
   }
 }
 
 @theme {
-  /* No Tailwind v4, a diretiva correta é apenas @theme */
+  /* Força o Tailwind a usar suas variáveis para o fundo e textos padrões */
   --color-background: var(--background);
-  --color-text-main: var(--foreground); 
+  --color-foreground: var(--text-color);
 }
 
+/* Força a aplicação global caso tenha componentes que limpem o estilo */
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--background) !important;
+  color: var(--text-color) !important;
 }
