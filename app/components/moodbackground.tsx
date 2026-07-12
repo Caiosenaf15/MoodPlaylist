@@ -10,7 +10,7 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
   ];
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-950">
+    <div className="absolute inset-0 overflow-hidden bg-black">
       <div
         className="mood-orb mood-orb-1"
         style={{
@@ -30,6 +30,9 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
         }}
       />
 
+      {/* Light scrim — keeps text readable without killing the mood colors */}
+      <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
+
       <style jsx>{`
         .mood-orb {
           position: absolute;
@@ -38,7 +41,7 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
           max-width: 780px;
           max-height: 780px;
           border-radius: 9999px;
-          opacity: 0.55;
+          opacity: 0.6;
           will-change: transform;
         }
 
@@ -82,6 +85,13 @@ export default function MoodBackground({ cores }: MoodBackgroundProps) {
           .mood-orb {
             width: 90vw;
             height: 90vw;
+            opacity: 0.55;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .mood-orb {
+            animation: none;
           }
         }
       `}</style>

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-12T13:20:00.000Z",
+  "title": "Design System: Moodfy",
+  "extensions": {
+    "colorMeta": {
+      "canvas-black": {
+        "role": "neutral",
+        "displayName": "Canvas Black",
+        "canonical": "oklch(0 0 0)",
+        "tonalRamp": ["oklch(0 0 0)", "oklch(0.08 0.005 250)", "oklch(0.15 0.005 250)", "oklch(0.22 0.005 250)", "oklch(0.35 0.005 250)", "oklch(0.50 0.005 250)", "oklch(0.65 0.005 250)", "oklch(0.93 0 0)"]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Accent Blue",
+        "canonical": "oklch(0.58 0.19 252)",
+        "tonalRamp": ["oklch(0.25 0.12 252)", "oklch(0.35 0.15 252)", "oklch(0.45 0.17 252)", "oklch(0.52 0.18 252)", "oklch(0.58 0.19 252)", "oklch(0.63 0.19 252)", "oklch(0.72 0.16 252)", "oklch(0.85 0.10 252)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "AI mood description — weight 500, muted color." },
+      "body": { "displayName": "Body", "purpose": "Search input text." },
+      "subhead": { "displayName": "Subhead", "purpose": "Track titles, compact button label." },
+      "caption": { "displayName": "Caption", "purpose": "Chips, artist names, text actions." }
+    },
+    "motion": [
+      { "name": "ease-out-quint", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default state transitions." },
+      { "name": "dur-fast", "value": "200ms", "purpose": "Hover, focus, color shifts." }
+    ],
+    "breakpoints": [{ "name": "sm", "value": "640px" }]
+  },
+  "components": [
+    {
+      "name": "Inline Search + Generate",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Compact inline row: search field + small Gerar button.",
+      "html": "<div class=\"ds-inline-row\"><input type=\"search\" class=\"ds-input-search\" placeholder=\"Descreva seu mood…\" /><button class=\"ds-btn-primary\">Gerar</button></div>",
+      "css": ".ds-inline-row { display: flex; align-items: center; gap: 8px; max-width: 24rem; } .ds-input-search { flex: 1; min-width: 0; height: 40px; padding: 0 16px; font-family: system-ui, sans-serif; font-size: 1rem; color: oklch(0.93 0 0); background: oklch(1 0 0 / 0.06); border: none; border-radius: 9999px; outline: none; } .ds-input-search::placeholder { color: oklch(0.58 0.01 250); } .ds-input-search:focus-visible { box-shadow: 0 0 0 2px oklch(0.58 0.19 252 / 0.45); } .ds-btn-primary { height: 34px; padding: 8px 18px; font-family: system-ui, sans-serif; font-size: 0.9375rem; font-weight: 500; color: oklch(1 0 0); background: oklch(0.58 0.19 252); border: none; border-radius: 9999px; cursor: pointer; white-space: nowrap; } .ds-btn-primary:hover { background: oklch(0.63 0.19 252); }"
+    },
+    {
+      "name": "Ghost Chip",
+      "kind": "chip",
+      "refersTo": "chip-preset",
+      "description": "Outline-only mood preset. Minimal visual weight.",
+      "html": "<button class=\"ds-chip\">Chuva à noite, nostálgico</button>",
+      "css": ".ds-chip { padding: 6px 14px; font-family: system-ui, sans-serif; font-size: 0.8125rem; font-weight: 400; color: oklch(0.68 0.01 250); background: transparent; border: 0.5px solid oklch(1 0 0 / 0.06); border-radius: 9999px; cursor: pointer; } .ds-chip:hover { color: oklch(0.93 0 0); background: oklch(1 0 0 / 0.06); }"
+    },
+    {
+      "name": "Grouped Track List",
+      "kind": "card",
+      "refersTo": "track-list",
+      "description": "Minimal grouped list for discovered tracks.",
+      "html": "<div class=\"ds-track-list\"><div class=\"ds-track-row\"><div class=\"ds-album-art\"></div><div class=\"ds-track-meta\"><p class=\"ds-track-title\">Track</p><p class=\"ds-track-artist\">Artist</p></div><button class=\"ds-text-btn\">Ouvir</button></div></div>",
+      "css": ".ds-track-list { background: oklch(0.16 0.005 250 / 0.55); backdrop-filter: blur(24px); border-radius: 10px; overflow: hidden; } .ds-track-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; } .ds-album-art { width: 36px; height: 36px; border-radius: 4px; background: oklch(1 0 0 / 0.06); } .ds-track-title { font-family: system-ui, sans-serif; font-size: 0.9375rem; color: oklch(0.93 0 0); margin: 0; } .ds-track-artist { font-family: system-ui, sans-serif; font-size: 0.8125rem; color: oklch(0.68 0.01 250); margin: 0; } .ds-text-btn { font-family: system-ui, sans-serif; font-size: 0.8125rem; font-weight: 500; color: oklch(0.58 0.19 252); background: transparent; border: none; cursor: pointer; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Midnight Mood Canvas",
+    "overview": "Minimal mood-to-music discovery. True black canvas, quiet UI chrome, AI-generated color orbs that bloom when results arrive.",
+    "keyCharacteristics": [
+      "OLED black canvas with vivid AI mood orbs",
+      "Compact inline input + action pattern",
+      "Ghost-outline chips and grouped track lists",
+      "One accent color for interactive elements only"
+    ],
+    "rules": [
+      { "name": "The Atmosphere Rule", "body": "Mood colors live in the background layer only.", "section": "colors" },
+      { "name": "The Quiet Type Rule", "body": "Weight 500 maximum on display text.", "section": "typography" },
+      { "name": "The Flat Chrome Rule", "body": "No shadows. Elevation is blur and opacity only.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the interface sparse.",
+      "Do let AI mood colors dominate the background after generation.",
+      "Do use ghost-outline chips instead of filled pills."
+    ],
+    "donts": [
+      "Don't mimic corporate streaming-app dark themes.",
+      "Don't apply mood colors to UI chrome.",
+      "Don't use full-width primary buttons."
+    ]
+  }
+}
